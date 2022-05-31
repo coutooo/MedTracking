@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MedTracking</string>
     <string name="medicamentos">Medicamentos</string>
+    <string name="batimentos">Batimentos</string>
 </resources>
