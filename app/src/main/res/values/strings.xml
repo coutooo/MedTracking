@@ -2,4 +2,8 @@
     <string name="app_name">MedTracking</string>
     <string name="medicamentos">Medicamentos</string>
     <string name="batimentos">Batimentos</string>
+    <string name="Tratamento">Tratamento</string>
+    <string name="Tratamentos">Tratamentos</string>
+    <string name="Carrinho">Carrinho</string>
+    <string name="Inventory">Inventory</string>
 </resources>
