@@ -38,36 +38,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void initArray() {
 
-        arrayList.add("ioreeoe");
-        arrayList.add("fghfgh");
-        arrayList.add("ftyjyjhghgh");
-        arrayList.add("jfgewrg");
-        arrayList.add("rwrewr");
-        arrayList.add("ghyjtyfghh");
-        arrayList.add("gfhfgh");
-        arrayList.add("gfhfht");
-        arrayList.add("retretret");
-        arrayList.add("retret");
-        arrayList.add("ioreeoe");
-        arrayList.add("fghfgh");
-        arrayList.add("ftyjyjhghgh");
-        arrayList.add("jfgewrg");
-        arrayList.add("rwrewr");
-        arrayList.add("ghyjtyfghh");
-        arrayList.add("gfhfgh");
-        arrayList.add("gfhfht");
-        arrayList.add("retretret");
-        arrayList.add("retret");
-        arrayList.add("ioreeoe");
-        arrayList.add("fghfgh");
-        arrayList.add("ftyjyjhghgh");
-        arrayList.add("jfgewrg");
-        arrayList.add("rwrewr");
-        arrayList.add("ghyjtyfghh");
-        arrayList.add("gfhfgh");
-        arrayList.add("gfhfht");
-        arrayList.add("retretret");
-        arrayList.add("retret");
+        for(int i=0;i<=30;i++)
+        {
+            arrayList.add("Bed "+i);
+        }
     }
 
 }
