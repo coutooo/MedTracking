@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "257215072571",
+    "project_id": "medtracking-98f89",
+    "storage_bucket": "medtracking-98f89.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257215072571:android:395e187c17a3a2b21d4f1e",
+        "android_client_info": {
+          "package_name": "com.example.medtracking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "257215072571-mmfhp24h670vu7b7t2pqsg62ns5oags0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWsAo96TQ7w8T9DZNO7iHC3utGY7rnSXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "257215072571-mmfhp24h670vu7b7t2pqsg62ns5oags0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
