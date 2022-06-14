@@ -1,5 +1,6 @@
 package com.example.medtracking.User;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -9,13 +10,20 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.example.medtracking.MainActivity;
 import com.example.medtracking.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
+import java.util.Map;
+
+
+// da jeito para o firestore https://www.youtube.com/watch?v=y2op1D0W8oE
 
 public class AllCategories extends AppCompatActivity {
 
@@ -69,6 +77,23 @@ public class AllCategories extends AppCompatActivity {
         rMedicamentos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+                Map<String, Object> nursess = new HashMap<>();
+                nursess.put("Id","3");
+                nursess.put("Nome","Jessica");
+
+                db.collection("Nurse").add(nursess).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(AllCategories.this,"Valus addded!",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+
                 Log.d("Medicamentos","Medicamentos");
             }
         });
