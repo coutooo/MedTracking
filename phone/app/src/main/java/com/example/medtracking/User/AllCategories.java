@@ -10,11 +10,20 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.medtracking.R;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 
 public class AllCategories extends AppCompatActivity {
 
     ImageView backBtn;
     RelativeLayout rTratamento,rMedicamentos,rInventario,rBatimentos;
+
+    // teste
+    private DocumentReference mDocRef = FirebaseFirestore.getInstance().document("Nurse/1");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +49,18 @@ public class AllCategories extends AppCompatActivity {
         rTratamento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                mDocRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if(documentSnapshot.exists()){
+                            String nurseName = documentSnapshot.getString("Nome");
+
+                            Log.d("Nome",nurseName);
+                        }
+                    }
+                });
+
                 Log.d("Tratamentos","Tratamentos");
             }
         });
