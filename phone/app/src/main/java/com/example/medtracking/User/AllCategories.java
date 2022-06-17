@@ -3,6 +3,7 @@ package com.example.medtracking.User;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,7 +29,7 @@ import java.util.Map;
 public class AllCategories extends AppCompatActivity {
 
     ImageView backBtn;
-    RelativeLayout rTratamento,rMedicamentos,rInventario,rBatimentos;
+    RelativeLayout rTratamento,rMedicamentos,rInventario,rBatimentos,rBluetooth;
 
     // teste
     private DocumentReference mDocRef = FirebaseFirestore.getInstance().document("Nurse/1");
@@ -44,6 +45,7 @@ public class AllCategories extends AppCompatActivity {
         rMedicamentos = findViewById(R.id.relativeLayoutMedicamentos);
         rInventario = findViewById(R.id.relativeLayoutInventario);
         rBatimentos = findViewById(R.id.relativeLayoutBatimentos);
+        rBluetooth = findViewById(R.id.relativeLayoutBluetooth);
 
         // botao para andar para tras
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +113,16 @@ public class AllCategories extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d("Batimentos","Batimentos");
+            }
+        });
+
+        //botao do bluetooth
+        rBluetooth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Bluetooth","Bluetooth");
+                Intent i = new Intent(AllCategories.this, BluetoothActivity.class);
+                startActivity(i);
             }
         });
 
