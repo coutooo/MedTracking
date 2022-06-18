@@ -29,7 +29,7 @@ import java.util.Map;
 public class AllCategories extends AppCompatActivity {
 
     ImageView backBtn;
-    RelativeLayout rTratamento,rMedicamentos,rInventario,rBatimentos,rBluetooth;
+    RelativeLayout rTratamento,rMedicamentos,rInventario,rBatimentos,rBluetooth,rNFC;
 
     // teste
     private DocumentReference mDocRef = FirebaseFirestore.getInstance().document("Nurse/1");
@@ -46,6 +46,7 @@ public class AllCategories extends AppCompatActivity {
         rInventario = findViewById(R.id.relativeLayoutInventario);
         rBatimentos = findViewById(R.id.relativeLayoutBatimentos);
         rBluetooth = findViewById(R.id.relativeLayoutBluetooth);
+        rNFC = findViewById(R.id.relativeLayoutNFC);
 
         // botao para andar para tras
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +116,16 @@ public class AllCategories extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("Bluetooth","Bluetooth");
                 Intent i = new Intent(AllCategories.this, BluetoothActivity.class);
+                startActivity(i);
+            }
+        });
+
+        //botao do nfc
+        rNFC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("NFC","NFC");
+                Intent i = new Intent(AllCategories.this, NFCActivity.class);
                 startActivity(i);
             }
         });
