@@ -8,4 +8,5 @@
     <string name="Inventory">Inventory</string>
     <string name="Inventario">Inventario</string>
     <string name="Bluetooth">Bluetooth</string>
+    <string name="NFC">NFC</string>
 </resources>
