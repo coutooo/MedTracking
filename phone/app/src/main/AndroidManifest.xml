@@ -19,6 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MedTracking">
+        <activity android:name=".User.UserActivity"
+            android:exported="false"/>
         <activity
             android:name=".User.NFCActivity"
             android:exported="false" />
