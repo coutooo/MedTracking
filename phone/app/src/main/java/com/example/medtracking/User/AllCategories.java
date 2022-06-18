@@ -60,16 +60,8 @@ public class AllCategories extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                mDocRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        if(documentSnapshot.exists()){
-                            String nurseName = documentSnapshot.getString("Nome");
-
-                            Log.d("Nome",nurseName);
-                        }
-                    }
-                });
+                Intent i = new Intent(AllCategories.this, UserActivity.class);
+                startActivity(i);
 
                 Log.d("Tratamentos","Tratamentos");
             }
@@ -112,6 +104,18 @@ public class AllCategories extends AppCompatActivity {
         rBatimentos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mDocRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if(documentSnapshot.exists()){
+                            String nurseName = documentSnapshot.getString("Nome");
+
+                            Log.d("Nome",nurseName);
+                        }
+                    }
+                });
+
+
                 Log.d("Batimentos","Batimentos");
             }
         });
