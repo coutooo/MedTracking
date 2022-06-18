@@ -27,6 +27,12 @@
             android:name=".User.AllCategories"
             android:exported="false" />
         <activity
+            android:name=".User.BedsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".User.TarefaActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

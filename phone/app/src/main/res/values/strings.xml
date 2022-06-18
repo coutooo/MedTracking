@@ -9,4 +9,6 @@
     <string name="Inventario">Inventario</string>
     <string name="Bluetooth">Bluetooth</string>
     <string name="information">Information</string>
+    <string name="Beds" />
+    <string name="pacients">Pacients</string>
 </resources>

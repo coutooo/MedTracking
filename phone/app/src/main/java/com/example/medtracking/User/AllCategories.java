@@ -55,7 +55,7 @@ public class AllCategories extends AppCompatActivity {
             }
         });
 
-        // botao do cartao de tratamento
+        // botao do cartao de informacao
         rTratamento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,20 +72,9 @@ public class AllCategories extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-                Map<String, Object> nursess = new HashMap<>();
-                nursess.put("Id","3");
-                nursess.put("Nome","Jessica");
-
-                db.collection("Nurse").add(nursess).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentReference> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(AllCategories.this,"Valus addded!",Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                Intent i = new Intent(AllCategories.this, BedsActivity.class);
+                startActivity(i);
 
 
                 Log.d("Medicamentos","Medicamentos");
@@ -132,3 +121,22 @@ public class AllCategories extends AppCompatActivity {
 
     }
 }
+
+
+
+/*
+               FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+                Map<String, Object> nursess = new HashMap<>();
+                nursess.put("Id","3");
+                nursess.put("Nome","Jessica");
+
+                db.collection("Nurse").add(nursess).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(AllCategories.this,"Valus addded!",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+ */
