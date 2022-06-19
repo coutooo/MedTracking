@@ -245,7 +245,7 @@ public class BluetoothActivity extends AppCompatActivity implements AdapterView.
 
 
     //create method for starting connection
-//***remember the conncction will fail and app will crash if you haven't paired first
+    //***remember the connection will fail and app will crash if you haven't paired first
     public void startConnection(){
         startBTConnection(mBTDevice,MY_UUID_INSECURE);
     }

@@ -12,4 +12,8 @@
     <string name="information">Information</string>
     <string name="Beds" />
     <string name="pacients">Pacients</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="top_icon">Medtracking</string>
 </resources>
