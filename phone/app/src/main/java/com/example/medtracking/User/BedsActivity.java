@@ -28,9 +28,9 @@ public class BedsActivity extends AppCompatActivity {
 
         String[] beds = {"Bed 1", "Bed 2"};
 
-        String[] nameAndCause = {"Joana, Acidente Mota","Joao, Caiu de Cavalo"};
+        String[] nameAndCause = {"Joao, Caiu de Cavalo","Joana, Acidente Mota"};
 
-        String[] inAndout = {"in:18-06/2022\nout:--/--/--","in:05-04/2022\nout:20/09/2022"};
+        String[] inAndout = {"in:18-06/2022\n\nout:--/--/--","in:05-04/2022\n\nout:20/09/2022"};
 
         ArrayList<Pacient> pacientArrayList = new ArrayList<>();
 
