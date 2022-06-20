@@ -25,6 +25,9 @@
             android:name=".User.NFCActivity"
             android:exported="false" />
         <activity
+            android:name=".User.TarefaActivity"
+            android:exported="false" />
+        <activity
             android:name=".User.BluetoothActivity"
             android:exported="false" />
         <activity
