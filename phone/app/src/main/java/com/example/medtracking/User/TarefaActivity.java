@@ -25,6 +25,9 @@ public class TarefaActivity extends AppCompatActivity {
 
         btnTasks = findViewById(R.id.btnTasks);
 
+
+
+
         btnTasks.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -35,8 +38,8 @@ public class TarefaActivity extends AppCompatActivity {
                 }
         );
 
-        Intent intent = this.getIntent();
 
+        Intent intent = this.getIntent();
         if (intent != null)
         {
             String bed = intent.getStringExtra("bed");
