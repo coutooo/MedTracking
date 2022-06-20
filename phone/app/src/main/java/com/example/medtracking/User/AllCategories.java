@@ -3,32 +3,23 @@ package com.example.medtracking.User;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.nfc.NdefMessage;
-import android.nfc.NfcAdapter;
-import android.nfc.Tag;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.example.medtracking.MainActivity;
 import com.example.medtracking.R;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,11 +30,12 @@ public class AllCategories extends AppCompatActivity {
 
     ImageView backBtn;
     RelativeLayout rTratamento,rMedicamentos,rInventario,rBatimentos,rBluetooth,rNFC;
+    /*
     NfcAdapter nfcAdapter;
     PendingIntent pendingIntent;
     IntentFilter writingTagFilters[];
     boolean writeMode;
-    Tag myTag;
+    Tag myTag;*/
     Context context;
     // teste
     private DocumentReference mDocRef = FirebaseFirestore.getInstance().document("Nurse/ZoyuBzAMxop39jzD9Gi7");
@@ -161,7 +153,7 @@ public class AllCategories extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
+/*
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (nfcAdapter==null) {
             Toast.makeText(this, "This device doesn't support NFC", Toast.LENGTH_SHORT).show();
@@ -172,9 +164,9 @@ public class AllCategories extends AppCompatActivity {
         IntentFilter tagDetected = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED);
         tagDetected.addCategory(Intent.CATEGORY_DEFAULT);
         writingTagFilters = new IntentFilter[] { tagDetected };
-
+*/
     }
-
+/*
     private void readFromIntent(Intent intent) {
         String action = intent.getAction();
         if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)
@@ -257,25 +249,25 @@ public class AllCategories extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         writeModeOn();
-    }
+    }*/
 
     /**
      * Enable Write
      */
-
+/*
     private void writeModeOn() {
         writeMode = true;
         nfcAdapter.enableForegroundDispatch(this, pendingIntent, writingTagFilters, null);
-    }
+    }*/
 
     /**
      * Disable Write
      */
-
+/*
     private void writeModeOff() {
         writeMode = false;
         nfcAdapter.disableForegroundDispatch(this);
-    }
+    }*/
 }
 
 
