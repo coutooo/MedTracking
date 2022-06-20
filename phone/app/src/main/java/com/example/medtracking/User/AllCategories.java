@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.medtracking.MainActivity;
 import com.example.medtracking.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -207,6 +208,32 @@ public class AllCategories extends AppCompatActivity {
             Log.e("UnsupportedEncoding", e.toString());
         }
         Toast.makeText(this, "NFC Content: " + text, Toast.LENGTH_SHORT).show();
+        String str = "Pacients/" + text.replace("PlainText|", "");
+        Log.d("FIREBASE", str);
+        DocumentReference mDocRef = FirebaseFirestore.getInstance().document(str);
+        mDocRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                String name = documentSnapshot.getString("Name");
+                Log.d("FIREBASE", name);
+
+                Intent i = new Intent(AllCategories.this, TarefaActivity.class);
+                i.putExtra("bed","Bed 420");
+                i.putExtra("nameAndCause","Jogou CS com o tiago");
+                i.putExtra("imageid",R.drawable.indenavarrete);
+                i.putExtra("inAndOut","in:05-04/2022\n\nout:20/09/2022");
+                startActivity(i);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(AllCategories.this, "Error!", Toast.LENGTH_SHORT).show();
+                Log.d("FIREBASE", e.toString());
+            }
+        });
+
+
 
     }
 
