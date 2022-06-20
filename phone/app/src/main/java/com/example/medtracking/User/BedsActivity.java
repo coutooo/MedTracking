@@ -2,21 +2,33 @@ package com.example.medtracking.User;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.medtracking.MainActivity;
 import com.example.medtracking.R;
 import com.example.medtracking.databinding.BedsActivityBinding;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
 public class BedsActivity extends AppCompatActivity {
 
     BedsActivityBinding binding;
+
+    private CollectionReference mDocRef = FirebaseFirestore.getInstance().collection("Pacients/");
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,6 +39,8 @@ public class BedsActivity extends AppCompatActivity {
         int[] imageId = {R.drawable.ic_user,R.drawable.indenavarrete}; // mudar para query
 
         String[] beds = {"Bed 1", "Bed 2"};  // mudar para query
+
+        fetchData();
 
         String[] nameAndCause = {"Joao, Caiu de Cavalo","Joana, Acidente Mota"};  // mudar para query
 
@@ -52,6 +66,29 @@ public class BedsActivity extends AppCompatActivity {
                 i.putExtra("imageid",imageId[position]);
                 i.putExtra("inAndOut",inAndout[position]);
                 startActivity(i);
+            }
+        });
+    }
+
+    public void fetchData(){
+        DocumentReference document = FirebaseFirestore.getInstance().collection("Pacients").document();
+        document.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists())
+                {
+                    Log.d("adsdsa",documentSnapshot.getString("name"));
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(),"Row not found.",Toast.LENGTH_LONG).show();
+                }
+            }
+        })
+        .addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(),"Failed to fetch data.",Toast.LENGTH_LONG).show();
             }
         });
     }
