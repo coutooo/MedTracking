@@ -157,7 +157,7 @@ public class AllCategories extends AppCompatActivity {
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (nfcAdapter==null) {
             Toast.makeText(this, "This device doesn't support NFC", Toast.LENGTH_SHORT).show();
-            finish();
+            //finish();
         }
         readFromIntent(getIntent());
         pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
