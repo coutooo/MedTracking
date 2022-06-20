@@ -27,10 +27,8 @@ import java.util.List;
 public class CheckBoxActivity extends AppCompatActivity {
     public class Item {
         boolean checked;
-        Drawable ItemDrawable;
         String ItemString;
-        Item(Drawable drawable, String t, boolean b){
-            ItemDrawable = drawable;
+        Item(String t, boolean b){
             ItemString = t;
             checked = b;
         }
@@ -86,14 +84,12 @@ public class CheckBoxActivity extends AppCompatActivity {
                 rowView = inflater.inflate(R.layout.row, null);
 
                 viewHolder.checkBox = (CheckBox) rowView.findViewById(R.id.rowCheckBox);
-                viewHolder.icon = (ImageView) rowView.findViewById(R.id.rowImageView);
                 viewHolder.text = (TextView) rowView.findViewById(R.id.rowTextView);
                 rowView.setTag(viewHolder);
             } else {
                 viewHolder = (ViewHolder) rowView.getTag();
             }
 
-            viewHolder.icon.setImageDrawable(list.get(position).ItemDrawable);
             viewHolder.checkBox.setChecked(list.get(position).checked);
 
             final String itemStr = list.get(position).ItemString;
@@ -126,7 +122,7 @@ public class CheckBoxActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.checkbox_activity);
         listView = (ListView)findViewById(R.id.listviewChecks);
         btnLookup = (Button)findViewById(R.id.lookup);
 
@@ -166,18 +162,15 @@ public class CheckBoxActivity extends AppCompatActivity {
     private void initItems(){
         items = new ArrayList<Item>();
 
-        TypedArray arrayDrawable = getResources().obtainTypedArray(R.array.resicon);
         TypedArray arrayText = getResources().obtainTypedArray(R.array.restext);
 
-        for(int i=0; i<arrayDrawable.length(); i++){
-            Drawable d = arrayDrawable.getDrawable(i);
+        for(int i=0; i<arrayText.length(); i++){
             String s = arrayText.getString(i);
             boolean b = false;
-            Item item = new Item(d, s, b);
+            Item item = new Item(s, b);
             items.add(item);
         }
 
-        arrayDrawable.recycle();
         arrayText.recycle();
     }
 
