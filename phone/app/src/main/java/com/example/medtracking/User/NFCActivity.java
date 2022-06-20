@@ -101,7 +101,7 @@ public class NFCActivity extends AppCompatActivity {
     private void buildTagViews(NdefMessage[] msgs) {
         if (msgs == null || msgs.length == 0) return;
         String text = "";
-
+        Log.d("NFC", "here");
         byte payload[] = msgs[0].getRecords()[0].getPayload();
         String textEnconding = ((payload[0] & 128) == 0) ? "UTF-8" : "UTF-16"; // Get text encoding
         int languageCodeLength = payload[0] & 0063; // Get language code e.g. "en"
@@ -112,6 +112,7 @@ public class NFCActivity extends AppCompatActivity {
         } catch (UnsupportedEncodingException e) {
             Log.e("UnsupportedEncoding", e.toString());
         }
+        Toast.makeText(this, "NFC Content: " + text, Toast.LENGTH_SHORT).show();
 
         nfc_contents.setText("NFC Content: " + text);
     }

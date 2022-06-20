@@ -22,8 +22,11 @@
         <entry key="..\:/android/MedTracking/phone/app/src/main/res/drawable/ic_baseline_bluetooth_24.xml" value="0.108" />
         <entry key="..\:/android/MedTracking/phone/app/src/main/res/layout/activity_all_categories.xml" value="0.20416666666666666" />
         <entry key="..\:/android/MedTracking/phone/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/android/MedTracking/phone/app/src/main/res/layout/activity_tarefas.xml" value="0.19655797101449277" />
+        <entry key="..\:/android/MedTracking/phone/app/src/main/res/layout/beds_activity.xml" value="0.19655797101449277" />
         <entry key="..\:/android/MedTracking/phone/app/src/main/res/layout/blue.xml" value="0.1816123188405797" />
         <entry key="..\:/android/MedTracking/phone/app/src/main/res/layout/bluePage.xml" value="0.1816123188405797" />
+        <entry key="..\:/android/MedTracking/phone/app/src/main/res/layout/checkbox_activity.xml" value="0.40222428174235403" />
         <entry key="..\:/android/MedTracking/phone/app/src/main/res/layout/device_adapter_view.xml" value="0.1816123188405797" />
         <entry key="..\:/android/MedTracking/phone/app/src/main/res/layout/nfc.xml" value="0.20416666666666666" />
         <entry key="..\:/android/MedTracking/phone/app/src/main/res/layout/nfc_tech_filter.xml" value="0.20416666666666666" />
