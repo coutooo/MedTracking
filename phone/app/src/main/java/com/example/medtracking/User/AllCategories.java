@@ -32,7 +32,7 @@ public class AllCategories extends AppCompatActivity {
     RelativeLayout rTratamento,rMedicamentos,rInventario,rBatimentos,rBluetooth,rNFC;
 
     // teste
-    private DocumentReference mDocRef = FirebaseFirestore.getInstance().document("Nurse/1");
+    private DocumentReference mDocRef = FirebaseFirestore.getInstance().document("Nurse/ZoyuBzAMxop39jzD9Gi7");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +86,20 @@ public class AllCategories extends AppCompatActivity {
         rInventario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+                Map<String, Object> nursess = new HashMap<>();
+                nursess.put("Id","3");
+                nursess.put("Nome","Jessica");
+
+                db.collection("Nurse").add(nursess).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(AllCategories.this,"Valus addded!",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
                 Log.d("Inventario","Inventario");
             }
         });
@@ -100,7 +114,10 @@ public class AllCategories extends AppCompatActivity {
                         if(documentSnapshot.exists()){
                             String nurseName = documentSnapshot.getString("Nome");
 
+                            Map<String,Object> asd = documentSnapshot.getData();
+
                             Log.d("Nome",nurseName);
+                            Log.d("asd", String.valueOf(asd));
                         }
                     }
                 });
@@ -142,7 +159,7 @@ public class AllCategories extends AppCompatActivity {
                 nursess.put("Id","3");
                 nursess.put("Nome","Jessica");
 
-                db.collection("Nurse").add(nursess).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    db.collection("Nurse").add(nursess).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
                         if(task.isSuccessful()){

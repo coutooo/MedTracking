@@ -24,13 +24,13 @@ public class BedsActivity extends AppCompatActivity {
         binding = BedsActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        int[] imageId = {R.drawable.ic_user,R.drawable.indenavarrete};
+        int[] imageId = {R.drawable.ic_user,R.drawable.indenavarrete}; // mudar para query
 
-        String[] beds = {"Bed 1", "Bed 2"};
+        String[] beds = {"Bed 1", "Bed 2"};  // mudar para query
 
-        String[] nameAndCause = {"Joao, Caiu de Cavalo","Joana, Acidente Mota"};
+        String[] nameAndCause = {"Joao, Caiu de Cavalo","Joana, Acidente Mota"};  // mudar para query
 
-        String[] inAndout = {"in:18-06/2022\n\nout:--/--/--","in:05-04/2022\n\nout:20/09/2022"};
+        String[] inAndout = {"in:18-06/2022\n\nout:--/--/--","in:05-04/2022\n\nout:20/09/2022"};  // mudar para query
 
         ArrayList<Pacient> pacientArrayList = new ArrayList<>();
 

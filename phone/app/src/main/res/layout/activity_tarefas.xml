@@ -151,6 +151,13 @@
             android:layout_height="wrap_content"
             android:text="TASKS"
             android:backgroundTint="@color/common_google_signin_btn_text_dark_disabled"/>
+        <Button
+            android:id="@+id/btnInv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/btnTasks"
+            android:text="Inventory"
+            android:backgroundTint="@color/common_google_signin_btn_text_dark_disabled"/>
     </RelativeLayout>
 
 
