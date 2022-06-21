@@ -19,6 +19,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,6 +29,16 @@ import java.util.Map;
 // da jeito para o firestore https://www.youtube.com/watch?v=y2op1D0W8oE
 
 public class AllCategories extends AppCompatActivity {
+
+    int[] imageId = {R.drawable.ic_user,R.drawable.indenavarrete}; // mudar para query
+
+    String[] beds;  // mudar para query  // = {"Bed 1", "Bed 2"}
+
+    String[] nameAndCause;  // mudar para query  //"Joao, Caiu de Cavalo","Joana, Acidente Mota"
+
+    String[] inAndout;  // mudar para query  = {"in:18-06/2022\n\nout:--/--/--","in:05-04/2022\n\nout:20/09/2022"};
+
+
 
     ImageView backBtn;
     RelativeLayout rTratamento,rMedicamentos,rInventario,rBatimentos,rBluetooth,rNFC;
@@ -46,6 +58,7 @@ public class AllCategories extends AppCompatActivity {
         setContentView(R.layout.activity_all_categories);
         context = this;
 
+        fetchData();
         //hooks
         backBtn = findViewById(R.id.back_pressed);
         rTratamento = findViewById(R.id.relativeLayoutTratamentos);
@@ -75,13 +88,16 @@ public class AllCategories extends AppCompatActivity {
             }
         });
 
-        // botao do cartao de medicamentos
+        // botao do cartao de pacients
         rMedicamentos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
                 Intent i = new Intent(AllCategories.this, BedsActivity.class);
+                i.putExtra("nameAndCause",nameAndCause);
+                i.putExtra("inAndout",inAndout);
+                i.putExtra("beds",beds);
                 startActivity(i);
 
 
@@ -153,6 +169,9 @@ public class AllCategories extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+
+
 /*
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (nfcAdapter==null) {
@@ -268,6 +287,47 @@ public class AllCategories extends AppCompatActivity {
         writeMode = false;
         nfcAdapter.disableForegroundDispatch(this);
     }*/
+
+
+
+    public void fetchData () {
+
+        FirebaseFirestore.getInstance().collection("Pacients")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            int size = task.getResult().size();
+                            nameAndCause = new String[size];
+                            beds = new String[size];
+                            inAndout = new String[size];
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                 // ta certo
+                                int position = document.getLong("bedId").intValue()-1;  // ta certo
+                                String namenCause = document.getString("nameAndCause");          // ta certo
+                                String bed = "Bed "+ document.getLong("bedId").toString();
+                                String io = document.getString("inAndout");
+
+
+
+                                Log.d("position", String.valueOf(position));
+                                Log.d("String",namenCause);
+                                Log.d("size", String.valueOf(size));
+
+                                nameAndCause[position] = namenCause;
+                                beds[position] = bed;
+                                inAndout[position] = io;
+
+                                Log.d("array final",nameAndCause[position]);
+                            }
+                        } else {
+                            Log.d("asdsadsadsa", "Error getting documents: ", task.getException());
+                        }
+                    }
+
+                });
+    }
 }
 
 
