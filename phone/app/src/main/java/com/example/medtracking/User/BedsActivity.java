@@ -14,12 +14,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.medtracking.MainActivity;
 import com.example.medtracking.R;
 import com.example.medtracking.databinding.BedsActivityBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -30,26 +34,33 @@ public class BedsActivity extends AppCompatActivity {
     private CollectionReference mDocRef = FirebaseFirestore.getInstance().collection("Pacients/");
 
 
+    int[] imageId = {R.drawable.ic_user,R.drawable.indenavarrete}; // mudar para query
+
+    String[] beds;  // mudar para query
+
+    String[] nameAndCause;  // mudar para query  //"Joao, Caiu de Cavalo","Joana, Acidente Mota"
+
+    String[] inAndout;  // mudar para query
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         binding = BedsActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        int[] imageId = {R.drawable.ic_user,R.drawable.indenavarrete}; // mudar para query
-
-        String[] beds = {"Bed 1", "Bed 2"};  // mudar para query
-
-        fetchData();
-
-        String[] nameAndCause = {"Joao, Caiu de Cavalo","Joana, Acidente Mota"};  // mudar para query
-
-        String[] inAndout = {"in:18-06/2022\n\nout:--/--/--","in:05-04/2022\n\nout:20/09/2022"};  // mudar para query
+        // get intents
+        Bundle extras = getIntent().getExtras();
+        nameAndCause = extras.getStringArray("nameAndCause");
+        beds = extras.getStringArray("beds");
+        inAndout = extras.getStringArray("inAndout");
+        //-------------------------------------
 
         ArrayList<Pacient> pacientArrayList = new ArrayList<>();
 
-        for (int i = 0;i< imageId.length; i++){
-            Pacient pacient = new Pacient(nameAndCause[i],beds[i],inAndout[i],imageId[i] );
+        for (int i = 0;i< nameAndCause.length; i++){
+            Pacient pacient = new Pacient(nameAndCause[i],beds[i],inAndout[i] );
             pacientArrayList.add(pacient);
         }
 
@@ -70,26 +81,4 @@ public class BedsActivity extends AppCompatActivity {
         });
     }
 
-    public void fetchData(){
-        DocumentReference document = FirebaseFirestore.getInstance().collection("Pacients").document();
-        document.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists())
-                {
-                    Log.d("adsdsa",documentSnapshot.getString("name"));
-                }
-                else
-                {
-                    Toast.makeText(getApplicationContext(),"Row not found.",Toast.LENGTH_LONG).show();
-                }
-            }
-        })
-        .addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(),"Failed to fetch data.",Toast.LENGTH_LONG).show();
-            }
-        });
-    }
 }

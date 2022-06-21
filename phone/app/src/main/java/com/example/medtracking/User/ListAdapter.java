@@ -43,7 +43,7 @@ public class ListAdapter extends ArrayAdapter<Pacient> {
 
         TextView inoutText = convertView.findViewById(R.id.inoutText);
 
-        imageView.setImageResource(pacient.imageId);
+        //imageView.setImageResource(pacient.imageId);
         bednumb.setText(pacient.bed);
         description.setText(pacient.nameAndcause);
         inoutText.setText(pacient.inAndout);
