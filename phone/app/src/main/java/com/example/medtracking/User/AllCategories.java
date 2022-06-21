@@ -109,7 +109,7 @@ public class AllCategories extends AppCompatActivity {
         rInventario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                /*FirebaseFirestore db = FirebaseFirestore.getInstance();
 
                 Map<String, Object> nursess = new HashMap<>();
                 nursess.put("Id","3");
@@ -122,7 +122,7 @@ public class AllCategories extends AppCompatActivity {
                             Toast.makeText(AllCategories.this,"Valus addded!",Toast.LENGTH_SHORT).show();
                         }
                     }
-                });
+                });*/
                 Log.d("Inventario","Inventario");
             }
         });
