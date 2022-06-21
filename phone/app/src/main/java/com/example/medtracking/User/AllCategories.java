@@ -32,6 +32,8 @@ public class AllCategories extends AppCompatActivity {
 
     int[] imageId = {R.drawable.ic_user,R.drawable.indenavarrete}; // mudar para query
 
+    int size;
+
     String[] beds;  // mudar para query  // = {"Bed 1", "Bed 2"}
 
     String[] nameAndCause;  // mudar para query  //"Joao, Caiu de Cavalo","Joana, Acidente Mota"
@@ -82,6 +84,7 @@ public class AllCategories extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent i = new Intent(AllCategories.this, UserActivity.class);
+                i.putExtra("npacients",size);
                 startActivity(i);
 
                 Log.d("Tratamentos","Tratamentos");
@@ -98,6 +101,7 @@ public class AllCategories extends AppCompatActivity {
                 i.putExtra("nameAndCause",nameAndCause);
                 i.putExtra("inAndout",inAndout);
                 i.putExtra("beds",beds);
+                i.putExtra("npacients",size);
                 startActivity(i);
 
 
@@ -298,7 +302,7 @@ public class AllCategories extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            int size = task.getResult().size();
+                            size = task.getResult().size();
                             nameAndCause = new String[size];
                             beds = new String[size];
                             inAndout = new String[size];
