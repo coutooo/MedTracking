@@ -11,9 +11,6 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -22,30 +19,16 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.flexbox.FlexDirection;
-import com.google.android.flexbox.FlexboxLayoutManager;
-import com.google.android.flexbox.JustifyContent;
-import com.google.android.material.internal.NavigationMenu;
-import com.google.android.material.navigation.NavigationView;
+import com.example.medtrackingtablet.DeviceListAdapter;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
-
-    RecyclerView recyclerView;
-    ArrayList<String> arrayList = new ArrayList<>();
-    DataAdapter adapter;
-    public DrawerLayout drawerLayout;
-    public ActionBarDrawerToggle actionBarDrawerToggle;
+public class BluetoothActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private static final String TAG = "BluetoothActivity";
 
@@ -56,7 +39,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     Button btnStartConnection;
     Button btnSend;
-    Button btnONOFF;
+    ImageButton btnBlue;
+
     EditText etSend;
 
     private static final UUID MY_UUID_INSECURE =
@@ -205,26 +189,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout);
+        setContentView(R.layout.blue);
 
-        /*recyclerView = findViewById(R.id.recyclerView);
-
-
-        initArray();
-        FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(this);
-        layoutManager.setFlexDirection(FlexDirection.ROW);
-        layoutManager.setJustifyContent(JustifyContent.FLEX_START);
-        recyclerView.setLayoutManager(layoutManager);
-        adapter = new DataAdapter(this, arrayList);
-        recyclerView.setAdapter(adapter);
-        */
-        btnONOFF = (Button) findViewById(R.id.btnONOFF);
+        Button btnONOFF = (Button) findViewById(R.id.btnONOFF);
         btnEnableDisable_Discoverable = (Button) findViewById(R.id.btnDiscoverable_on_off);
         lvNewDevices = (ListView) findViewById(R.id.lvNewDevices);
         mBTDevices = new ArrayList<>();
 
         btnStartConnection = (Button) findViewById(R.id.btnStartConnection);
         btnSend = (Button) findViewById(R.id.btnSend);
+        btnBlue = findViewById(R.id.btnBlue);
         etSend = (EditText) findViewById(R.id.editText);
 
         //Broadcasts when bond state changes (ie:pairing)
@@ -233,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
-        lvNewDevices.setOnItemClickListener(MainActivity.this);
+        lvNewDevices.setOnItemClickListener(BluetoothActivity.this);
 
 
         btnONOFF.setOnClickListener(new View.OnClickListener() {
@@ -259,8 +233,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-
+        btnBlue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onClick: enabling/disabling bluetooth.");
+            }
+        });
     }
+
 
     //create method for starting connection
     //***remember the connection will fail and app will crash if you haven't paired first
@@ -384,21 +364,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             mBTDevices.get(i).createBond();
 
             mBTDevice = mBTDevices.get(i);
-            mBluetoothConnection = new BluetoothConnectionService(MainActivity.this);
+            mBluetoothConnection = new BluetoothConnectionService(BluetoothActivity.this);
         }
     }
 
     private void showToast(String msg) {
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-    }
-
-
-    private void initArray() {
-
-        for(int i=0;i<=30;i++)
-        {
-            arrayList.add("Bed "+i);
-        }
     }
 
 }
