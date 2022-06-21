@@ -37,7 +37,7 @@ public class TarefaActivity extends AppCompatActivity {
 
             binding.bedN.setText(bed);
             binding.nameAndCause.setText(nameAndCause);
-            binding.profileImage.setImageResource(imageId);
+            //binding.profileImage.setImageResource(imageId);
             binding.inAndOut.setText(inAndout);
         }
 

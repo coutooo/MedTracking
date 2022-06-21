@@ -74,7 +74,7 @@ public class BedsActivity extends AppCompatActivity {
                 Intent i = new Intent(BedsActivity.this, TarefaActivity.class);
                 i.putExtra("bed",beds[position]);
                 i.putExtra("nameAndCause",nameAndCause[position]);
-                i.putExtra("imageid",imageId[position]);
+                //i.putExtra("imageid",imageId[position]);
                 i.putExtra("inAndOut",inAndout[position]);
                 startActivity(i);
             }
