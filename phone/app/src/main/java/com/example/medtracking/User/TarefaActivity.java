@@ -25,15 +25,7 @@ public class TarefaActivity extends AppCompatActivity {
 
         btnTasks = findViewById(R.id.btnTasks);
 
-        btnTasks.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent i = new Intent(TarefaActivity.this, CheckBoxActivity.class);
-                        startActivity(i);
-                    }
-                }
-        );
+
 
         Intent intent = this.getIntent();
         if (intent != null)
@@ -48,5 +40,22 @@ public class TarefaActivity extends AppCompatActivity {
             binding.profileImage.setImageResource(imageId);
             binding.inAndOut.setText(inAndout);
         }
+
+        btnTasks.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String bedstr = intent.getStringExtra("bed");
+                        Intent i = new Intent(TarefaActivity.this, CheckBoxActivity.class);
+
+                        String bed = bedstr.replaceAll("[^0-9]", "");
+
+                        int bedN = Integer.parseInt(bed);
+
+                        i.putExtra("id",bedN);
+                        startActivity(i);
+                    }
+                }
+        );
     }
 }

@@ -2,6 +2,7 @@ package com.example.medtracking.User;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -161,6 +162,13 @@ public class CheckBoxActivity extends AppCompatActivity {
 
     private void initItems(){
         items = new ArrayList<Item>();
+
+        Intent intent = this.getIntent();
+        if (intent != null)
+        {
+            int id = intent.getIntExtra("id",1);
+        }
+
 
         TypedArray arrayText = getResources().obtainTypedArray(R.array.restext);
 
