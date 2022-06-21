@@ -60,7 +60,7 @@ public class BedsActivity extends AppCompatActivity {
         ArrayList<Pacient> pacientArrayList = new ArrayList<>();
 
         for (int i = 0;i< nameAndCause.length; i++){
-            Pacient pacient = new Pacient(nameAndCause[i],beds[i],inAndout[i],imageId[i] );
+            Pacient pacient = new Pacient(nameAndCause[i],beds[i],inAndout[i] );
             pacientArrayList.add(pacient);
         }
 

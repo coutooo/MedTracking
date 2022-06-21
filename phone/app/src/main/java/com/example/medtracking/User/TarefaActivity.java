@@ -40,7 +40,7 @@ public class TarefaActivity extends AppCompatActivity {
         {
             String bed = intent.getStringExtra("bed");
             String nameAndCause = intent.getStringExtra("nameAndCause");
-            int imageId = intent.getIntExtra("imageid", R.drawable.indenavarrete);
+            int imageId = intent.getIntExtra("imageid", R.drawable.hospital_bed);
             String inAndout = intent.getStringExtra("inAndOut");
 
             binding.bedN.setText(bed);
