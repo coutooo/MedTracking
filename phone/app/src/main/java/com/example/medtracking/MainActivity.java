@@ -1,5 +1,6 @@
 package com.example.medtracking;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -11,6 +12,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.medtracking.User.AllCategories;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -66,8 +70,36 @@ public class MainActivity extends AppCompatActivity {
 
         if (!email.matches(emailPattern))
         {
-            inputEmail.setError("Enter Connext Email");
+            inputEmail.setError("Enter a valid Email");
+        }else if(password.isEmpty() || password.length()<6){
+            inputPassword.setError("Enter a proper Password");
+        }else{
+            progressDialog.setMessage("Please Wait While Login...");
+            progressDialog.setTitle("Login");
+            progressDialog.setCanceledOnTouchOutside(false);
+            progressDialog.show();
+
+            mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful())
+                    {
+                        progressDialog.dismiss();
+                        sendUserToNextActivity();
+                        Toast.makeText(MainActivity.this,"Login Successful",Toast.LENGTH_SHORT).show();
+                    }else{
+                        progressDialog.dismiss();
+                        Toast.makeText(MainActivity.this,""+task.getException(),Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
+    }
+
+    private void sendUserToNextActivity() {
+        Intent intent = new Intent(MainActivity.this,AllCategories.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     private void showToast(String msg) {
