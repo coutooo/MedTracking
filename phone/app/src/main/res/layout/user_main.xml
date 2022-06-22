@@ -235,7 +235,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="joey@av.hospital.pt"
+                    android:text="joey@ua.pt"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 

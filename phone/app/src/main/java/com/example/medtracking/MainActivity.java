@@ -22,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
-    Button bMain,bLogin;
+    //Button bMain;
+    Button bLogin;
     EditText inputEmail,inputPassword;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        bMain = findViewById(R.id.btnMain);
+        //bMain = findViewById(R.id.btnMain);
         inputEmail = findViewById(R.id.inputEmail);
         inputPassword = findViewById(R.id.inputPassword);
         bLogin = findViewById(R.id.btnLogin);
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 perforLogin();
             }
         });
-
+/*
         bMain.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(i);
                     }
                 }
-        );
+        );*/
     }
 
     private void perforLogin() {

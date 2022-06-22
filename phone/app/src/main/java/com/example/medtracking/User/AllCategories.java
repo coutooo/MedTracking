@@ -3,9 +3,15 @@ package com.example.medtracking.User;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.nfc.NdefMessage;
+import android.nfc.NfcAdapter;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.medtracking.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -22,6 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,12 +52,12 @@ public class AllCategories extends AppCompatActivity {
 
     ImageView backBtn;
     RelativeLayout rTratamento,rMedicamentos,rInventario,rBatimentos,rBluetooth,rNFC;
-    /*
+
     NfcAdapter nfcAdapter;
     PendingIntent pendingIntent;
     IntentFilter writingTagFilters[];
     boolean writeMode;
-    Tag myTag;*/
+    Tag myTag;
     Context context;
     // teste
     private DocumentReference mDocRef = FirebaseFirestore.getInstance().document("Nurse/ZoyuBzAMxop39jzD9Gi7");
@@ -65,8 +73,8 @@ public class AllCategories extends AppCompatActivity {
         backBtn = findViewById(R.id.back_pressed);
         rTratamento = findViewById(R.id.relativeLayoutTratamentos);
         rMedicamentos = findViewById(R.id.relativeLayoutMedicamentos);
-        rInventario = findViewById(R.id.relativeLayoutInventario);
-        rBatimentos = findViewById(R.id.relativeLayoutBatimentos);
+        //rInventario = findViewById(R.id.relativeLayoutInventario);
+        //rBatimentos = findViewById(R.id.relativeLayoutBatimentos);
         rBluetooth = findViewById(R.id.relativeLayoutBluetooth);
         rNFC = findViewById(R.id.relativeLayoutNFC);
 
@@ -109,29 +117,10 @@ public class AllCategories extends AppCompatActivity {
             }
         });
 
-        //botao do cartao de inventario
-        rInventario.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /*FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-                Map<String, Object> nursess = new HashMap<>();
-                nursess.put("Id","3");
-                nursess.put("Nome","Jessica");
-
-                db.collection("Nurse").add(nursess).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentReference> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(AllCategories.this,"Valus addded!",Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });*/
-                Log.d("Inventario","Inventario");
-            }
-        });
 
         //botao do cartao de batimentos
+        /*
         rBatimentos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -152,7 +141,7 @@ public class AllCategories extends AppCompatActivity {
 
                 Log.d("Batimentos","Batimentos");
             }
-        });
+        });*/
 
         //botao do bluetooth
         rBluetooth.setOnClickListener(new View.OnClickListener() {
@@ -176,7 +165,7 @@ public class AllCategories extends AppCompatActivity {
 
 
 
-/*
+
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (nfcAdapter==null) {
             Toast.makeText(this, "This device doesn't support NFC", Toast.LENGTH_SHORT).show();
@@ -187,9 +176,9 @@ public class AllCategories extends AppCompatActivity {
         IntentFilter tagDetected = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED);
         tagDetected.addCategory(Intent.CATEGORY_DEFAULT);
         writingTagFilters = new IntentFilter[] { tagDetected };
-*/
+
     }
-/*
+
     private void readFromIntent(Intent intent) {
         String action = intent.getAction();
         if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)
@@ -230,14 +219,14 @@ public class AllCategories extends AppCompatActivity {
 
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                String name = documentSnapshot.getString("Name");
+                String name = documentSnapshot.getId().toString();
                 Log.d("FIREBASE", name);
 
                 Intent i = new Intent(AllCategories.this, TarefaActivity.class);
-                i.putExtra("bed","Bed 420");
-                i.putExtra("nameAndCause","Jogou CS com o tiago");
+                i.putExtra("bed",name);
+                i.putExtra("nameAndCause",documentSnapshot.getString("nameAndCause"));
                 i.putExtra("imageid",R.drawable.indenavarrete);
-                i.putExtra("inAndOut","in:05-04/2022\n\nout:20/09/2022");
+                i.putExtra("inAndOut",documentSnapshot.getString("inAndout"));
                 startActivity(i);
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -272,25 +261,25 @@ public class AllCategories extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         writeModeOn();
-    }*/
+    }
 
     /**
      * Enable Write
      */
-/*
+
     private void writeModeOn() {
         writeMode = true;
         nfcAdapter.enableForegroundDispatch(this, pendingIntent, writingTagFilters, null);
-    }*/
+    }
 
     /**
      * Disable Write
      */
-/*
+
     private void writeModeOff() {
         writeMode = false;
         nfcAdapter.disableForegroundDispatch(this);
-    }*/
+    }
 
 
 

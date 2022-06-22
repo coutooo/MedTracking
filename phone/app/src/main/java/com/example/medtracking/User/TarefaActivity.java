@@ -36,7 +36,7 @@ public class TarefaActivity extends AppCompatActivity {
 
 
         fetchData();
-        btnTasks = findViewById(R.id.btnTasks);
+        //btnTasks = findViewById(R.id.btnTasks);
 
 
 
@@ -53,7 +53,7 @@ public class TarefaActivity extends AppCompatActivity {
             //binding.profileImage.setImageResource(imageId);
             binding.inAndOut.setText(inAndout);
         }
-
+        /*
         btnTasks.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -72,7 +72,7 @@ public class TarefaActivity extends AppCompatActivity {
                         startActivity(i);
                     }
                 }
-        );
+        );*/
 
     }
 
