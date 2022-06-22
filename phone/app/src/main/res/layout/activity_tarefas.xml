@@ -144,13 +144,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <!--
+
         <Button
             android:id="@+id/btnTasks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/common_google_signin_btn_text_dark_disabled"
             android:text="TASKS" />
+        <!--
         <Button
             android:id="@+id/btnInv"
             android:layout_width="wrap_content"

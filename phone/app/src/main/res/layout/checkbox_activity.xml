@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".User.CheckBoxActivity" >
-
+    <!--
     <Button
         android:layout_width="80dp"
         android:layout_height="40dp"
@@ -13,6 +13,7 @@
         android:textColor="@color/black">
 
     </Button>
+    -->
     <Button
         android:id="@+id/lookup"
         android:layout_width="match_parent"
