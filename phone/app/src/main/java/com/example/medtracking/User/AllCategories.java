@@ -52,12 +52,14 @@ public class AllCategories extends AppCompatActivity {
 
     ImageView backBtn;
     RelativeLayout rTratamento,rMedicamentos,rInventario,rBatimentos,rBluetooth,rNFC;
-
+/*
     NfcAdapter nfcAdapter;
     PendingIntent pendingIntent;
     IntentFilter writingTagFilters[];
     boolean writeMode;
     Tag myTag;
+
+ */
     Context context;
     // teste
     private DocumentReference mDocRef = FirebaseFirestore.getInstance().document("Nurse/ZoyuBzAMxop39jzD9Gi7");
@@ -165,7 +167,7 @@ public class AllCategories extends AppCompatActivity {
 
 
 
-
+        /*
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (nfcAdapter==null) {
             Toast.makeText(this, "This device doesn't support NFC", Toast.LENGTH_SHORT).show();
@@ -176,9 +178,10 @@ public class AllCategories extends AppCompatActivity {
         IntentFilter tagDetected = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED);
         tagDetected.addCategory(Intent.CATEGORY_DEFAULT);
         writingTagFilters = new IntentFilter[] { tagDetected };
+         */
 
     }
-
+/*
     private void readFromIntent(Intent intent) {
         String action = intent.getAction();
         if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)
@@ -266,7 +269,7 @@ public class AllCategories extends AppCompatActivity {
     /**
      * Enable Write
      */
-
+/*
     private void writeModeOn() {
         writeMode = true;
         nfcAdapter.enableForegroundDispatch(this, pendingIntent, writingTagFilters, null);
@@ -275,12 +278,12 @@ public class AllCategories extends AppCompatActivity {
     /**
      * Disable Write
      */
-
+/*
     private void writeModeOff() {
         writeMode = false;
         nfcAdapter.disableForegroundDispatch(this);
     }
-
+*/
 
 
     public void fetchData () {

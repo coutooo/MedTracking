@@ -25,6 +25,7 @@ public class TarefaActivity extends AppCompatActivity {
 
     String[] tasks;  //
     boolean[] dones;
+    int[] idPacients;
     int size;
 
     Button btnTasks;
@@ -69,6 +70,7 @@ public class TarefaActivity extends AppCompatActivity {
                         Log.d("dones", String.valueOf(dones[0]));
                         i.putExtra("dones",dones);
                         i.putExtra("id",bedN);
+                        i.putExtra("idPacients",idPacients);
                         startActivity(i);
                     }
                 }
@@ -86,14 +88,17 @@ public class TarefaActivity extends AppCompatActivity {
                             size = task.getResult().size();// deu certo
                             tasks = new String[size];
                             dones = new boolean[size];
+                            idPacients = new int[size];
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 // ta certo
                                 int position = document.getLong("idTask").intValue()-1;  // ta certo
+                                int idPac = document.getLong("idPacient").intValue();
                                 Boolean done = document.getBoolean("done");
                                 String taski = document.getId();
 
                                 tasks[position] = taski;
                                 dones[position] = done;
+                                idPacients[position] = idPac;
                             }
                         } else {
                             Log.d("asdsadsadsa", "Error getting documents: ", task.getException());

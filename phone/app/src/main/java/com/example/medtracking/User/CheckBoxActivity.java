@@ -39,14 +39,18 @@ public class CheckBoxActivity extends AppCompatActivity {
 
     String[] tasks;  //
     boolean[] dones;
+    int[] idPacients;
     int size;
+    int id;
 
     public class Item {
         boolean checked;
         String ItemString;
-        Item(String t, boolean b){
+        int idPacient;
+        Item(String t, boolean b, int id){
             ItemString = t;
             checked = b;
+            idPacient = id;
         }
 
         public boolean isChecked(){
@@ -88,6 +92,8 @@ public class CheckBoxActivity extends AppCompatActivity {
         public boolean isChecked(int position) {
             return list.get(position).checked;
         }
+
+        public int getIdPatient(int position) { return  list.get(position).idPacient;}
 
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
@@ -166,7 +172,7 @@ public class CheckBoxActivity extends AppCompatActivity {
 
                     Map<String, Object> task = new HashMap<>();
                     task.put("done",items.get(i).isChecked());
-                    task.put("idPacient",1);
+                    task.put("idPacient",items.get(i).idPacient);
                     task.put("idTask",i+1);
 
                     String nomeTask = tasks[i];
@@ -189,24 +195,33 @@ public class CheckBoxActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         tasks = extras.getStringArray("tasks");
         dones = extras.getBooleanArray("dones");
+        idPacients = extras.getIntArray("idPacients");
+        int id = extras.getInt("id",1);
         //-------------------------------------
 
         items = new ArrayList<Item>();
 
-        Intent intent = this.getIntent();
+
+        /*Intent intent = this.getIntent();
         if (intent != null)
         {
             int id = intent.getIntExtra("id",1);
-        }
+        }*/
 
 
        // TypedArray arrayText = getResources().obtainTypedArray(R.array.restext);
 
         for(int i=0; i<tasks.length; i++){
-            String s = tasks[i];
-            boolean b = dones[i];
-            Item item = new Item(s, b);
-            items.add(item);
+            int idPacient = idPacients[i];
+
+            if (id == idPacient)
+            {
+                String s = tasks[i];
+                boolean b = dones[i];
+                Item item = new Item(s, b,idPacient);
+                items.add(item);
+            }
+
         }
 
         //arrayText.recycle();
