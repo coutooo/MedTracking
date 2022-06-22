@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,14 +19,28 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.medtracking.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CheckBoxActivity extends AppCompatActivity {
+
+    String[] tasks;  //
+    boolean[] dones;
+    int size;
+
     public class Item {
         boolean checked;
         String ItemString;
@@ -141,26 +156,41 @@ public class CheckBoxActivity extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
             }});
 
+        // check tasks done
         btnLookup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String str = "Check items:\n";
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
 
                 for (int i=0; i<items.size(); i++){
-                    if (items.get(i).isChecked()){
-                        str += i + "\n";
-                    }
-                }
 
-                Toast.makeText(CheckBoxActivity.this,
-                        str,
-                        Toast.LENGTH_LONG).show();
+                    Map<String, Object> task = new HashMap<>();
+                    task.put("done",items.get(i).isChecked());
+                    task.put("idPacient",1);
+                    task.put("idTask",i+1);
+
+                    String nomeTask = tasks[i];
+
+                    db.collection("Tasks").document(nomeTask).set(task).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Log.d("sucess","sucess");
+                        }
+                    });
+                }
 
             }
         });
     }
 
     private void initItems(){
+
+        // get intents
+        Bundle extras = getIntent().getExtras();
+        tasks = extras.getStringArray("tasks");
+        dones = extras.getBooleanArray("dones");
+        //-------------------------------------
+
         items = new ArrayList<Item>();
 
         Intent intent = this.getIntent();
@@ -170,16 +200,16 @@ public class CheckBoxActivity extends AppCompatActivity {
         }
 
 
-        TypedArray arrayText = getResources().obtainTypedArray(R.array.restext);
+       // TypedArray arrayText = getResources().obtainTypedArray(R.array.restext);
 
-        for(int i=0; i<arrayText.length(); i++){
-            String s = arrayText.getString(i);
-            boolean b = false;
+        for(int i=0; i<tasks.length; i++){
+            String s = tasks[i];
+            boolean b = dones[i];
             Item item = new Item(s, b);
             items.add(item);
         }
 
-        arrayText.recycle();
+        //arrayText.recycle();
     }
 
 }

@@ -9,7 +9,7 @@
         android:id="@+id/lookup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Check Tasks Done"/>
+        android:text="Confirm Tasks Done"/>
     <ListView
         android:id="@+id/listviewChecks"
         android:layout_width="match_parent"
