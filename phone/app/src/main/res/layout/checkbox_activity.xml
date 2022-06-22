@@ -6,6 +6,14 @@
     tools:context=".User.CheckBoxActivity" >
 
     <Button
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:text="back"
+        android:backgroundTint="@color/grey"
+        android:textColor="@color/black">
+
+    </Button>
+    <Button
         android:id="@+id/lookup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,5 +22,7 @@
         android:id="@+id/listviewChecks"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+
 
 </LinearLayout>
